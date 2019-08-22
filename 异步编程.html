@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    //1.回调函数
+    function f1(callback) {
+        console.log('f1');
+        setTimeout(function () {
+            // f1的任务代码
+            callback();
+        }, 1000);
+    }
+    function f2() {
+        console.log('f2');
+    }
+
+    //2.事件监听
+    f1.on('done', f2);
+    function f1() {
+        setTimeout(function () {
+            // f1的任务代码
+            f1.trigger('done');
+        }, 1000);
+    }
+
+    //3.发布/订阅
+    jQuery.subscribe("done", f2);
+    function f1() {
+        setTimeout(function () {
+            // f1的任务代码
+            jQuery.publish("done");
+        }, 1000);
+    }
+    jQuery.unsubscribe("done", f2);//f2完成后可以取消订阅
+
+    //4.Promises对象
+    function f1() {
+        var dfd = $.Deferred();
+        setTimeout(function () {
+            // f1的任务代码
+            dfd.resolve();
+        }, 500);
+        return dfd.promise;
+    }
+    f1().then(f2);
+    f1().then(f2).then(f3);//指定多个回调函数
+    f1().then(f2).fail(f3);//指定发生错误时的回调函数
+</script>

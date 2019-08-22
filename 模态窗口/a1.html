@@ -1,0 +1,33 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>a.html</title>
+
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <form name="form1" action="test.html" method="post">
+        客户id: <input type="text" name="cid" value="" id="cid"><br>
+        客户名称<input type="text" name="cname" value="" id="cname">
+        <input type="button" name="ok" value="请选择客户" onclick="openWin();" />
+    </form>
+</body>
+</html>
+<script language="JavaScript">
+    function openWin() {
+
+        /*
+         * window.showModalDialog( sURL , vArguments , sFeatures )
+         *   * sURL:指定要载入和显示的 URL
+         *   * vArguments:指定供显示文档时使用的变量。利用这个参数可以传递任何类型的值，包括包含多个值得的数组。
+         *                对话框可以通过调用程序从window对象的dialogArguments属性提取这些值。
+         *                这里传递"window"对象到a2.html页面
+         *   * sFeatures:指定对话框的窗口装饰。使用下面的值。多个之间用分号隔开。
+         */
+        window.showModalDialog("a2.html", window, "status:no;resizable:yes;dialogHeight:210px;dialogWidth:360px;help:no");
+        //建立无模式对话框显示指定的文档
+        //window.showModelessDialog("a2.html", window, "status:no;resizable:yes;dialogHeight:210px;dialogWidth:360px;help:no");
+    }
+</script>

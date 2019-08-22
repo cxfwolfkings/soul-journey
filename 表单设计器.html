@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>index.html</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script language="javascript" charset="utf-8" src="js/jquery-1.9.1.js"></script>
+	<script language="javascript" charset="utf-8" src="js/action.js"></script>
+    <script language="javascript" charset="utf-8" src="js/chushihua.js"></script>
+	<script language="javascript" charset="utf-8" src="js/xinyuansu.js"></script>
+    <script language="javascript" charset="utf-8" src="js/anniuaction.js"></script>
+	<script language="javascript" charset="utf-8" src="js/jquery-ui-1.10.3.custom.js"></script>
+	<script language="javascript" charset="utf-8" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="themes/base/jquery.ui.all.css">
+  </head>
+<body id="thebody">
+
+<div class="ui-widget-content ui-corner-all" id="shejiqi">
+<h3 class="ui-widget-header ui-corner-all" id="shejiqibiaoti">表单设计器</h3>
+<div id="biaodanrongqi">
+<form id="screen"></form>
+</div>
+</div>
+
+<div id="toolbar">
+<h3>HTML控件</h3>
+<div id="baohtml">
+<ul id="htmltools" class="connectedSortable">
+	<li class="ui-state-default liebiao" id="newtext">单行文本框</li>
+	<li class="ui-state-default liebiao" id="newbutton">按钮</li>
+	<li class="ui-state-default liebiao" id="newspan">文本</li>
+	<li class="ui-state-default liebiao" id="newlianjie">链接</li>
+	<li class="ui-state-default liebiao" id="newcheckbox">勾选框</li>
+    <li class="ui-state-default liebiao" id="newradio">Radio</li>
+    <li class="ui-state-default liebiao" id="newselect">下拉框</li>
+    <li class="ui-state-default liebiao" id="newtextarea">多行文本框</li>
+    <li class="ui-state-default liebiao" id="newtable">表格</li>
+</ul>
+</div>
+</div>
+
+<div id="tabs">
+    <ul>
+		<li><a href="#tabs-1">常规操作</a></li>
+		<li><a href="#tabs-2">工具箱状态更改</a></li>
+	</ul>
+    <div id="tabs-1">
+    <input type="button" value="上对齐" onclick="shangduiqi()"/>
+    <input type="button" value="左对齐" onclick="zuoduiqi()"/>
+    <input type="button" value="下对齐" onclick="xiaduiqi()"/>
+    <input type="button" value="右对齐" onclick="youduiqi()"/>
+    <input type="button" value="更改容器宽高" onclick="genggaikuangao()"/>
+    <input type="button" id="kuangaobangding" value="宽高绑定" onclick="kuangaobangding()"/>
+	<input type="button" value="删除元素" onclick="shanchuyuansu()"/>
+    <hr/>
+    <input type="button" value="保存" onclick="saveyuanban()"/>
+    <input type="button" value="读取" onclick="loadbiaodan()"/>
+    <input type="button" value="生成表单" onclick="shengcheng()"/>
+    </div>
+    <div id="tabs-2">
+    <input type="button" value="移动主屏幕" id="gudingshejiqi" onclick="enableshejiqi()"/>
+    <input type="button" value="移动控件箱" id="gudingtoolbar" onclick="enabletoolbar()"/>
+    <input type="button" value="移动操作箱" id="gudingtabs" onclick="enabletabs()"/>
+    <input type="button" value="移动属性箱" id="gudingcssandshuxing" onclick="cssandshuxingbangding()"/>
+    </div>
+</div>
+
+<div id="cssandshuxing">
+    <ul>
+		<li><a href="#shuxing">属性设置</a></li>
+		<li><a href="#css">CSS设置</a></li>
+        <li><a href="#teshucaozuo">特殊操作</a></li>
+	</ul>
+    <div id="shuxing">
+    <span class="shuxingspan">name:</span><input type="text" class="shuxing ui-corner-all ui-widget-content" id="shuxingname"/>
+	<span class="shuxingspan">class:</span><input type="text" class="shuxing ui-corner-all ui-widget-content" id="shuxingclass"/>
+	<span class="shuxingspan">id:</span><input type="text" class="shuxing ui-corner-all ui-widget-content" id="shuxingid"/>
+	<span class="shuxingspan">value:</span><input type="text" class="shuxing ui-corner-all ui-widget-content" id="shuxingvalue" disabled="disabled"/>
+	<span class="shuxingspan">text:</span><input type="text" class="shuxing ui-corner-all ui-widget-content" id="shuxingtext" disabled="disabled"/>
+	<span class="shuxingspan">onclick:</span><input type="text" class="shuxing ui-corner-all ui-widget-content" id="shuxingonclick"/>
+	<input type="button" value="更改" onclick="shezhishuxing()" id="genggaishuxingzhi"/>
+    </div>
+    <div id="css">
+    <span class="cssspan">width:</span><input type="text" class="cssxiugai ui-corner-all ui-widget-content" id="csswidth" disabled="disabled"/>
+	<span class="cssspan">height:</span><input type="text" class="cssxiugai ui-corner-all ui-widget-content" id="cssheight" disabled="disabled"/>
+	<span class="cssspan">left(距容器的左边距):</span><input type="text" class="cssxiugai ui-corner-all ui-widget-content" id="cssleft"/>
+	<span class="cssspan">top(距容器的上边距):</span><input type="text" class="cssxiugai ui-corner-all ui-widget-content" id="csstop"/>
+	<span class="cssspan">fontsize:</span><input type="text" class="cssxiugai ui-corner-all ui-widget-content" id="cssfontsize" disabled="disabled"/>
+	<span class="cssspan">fontcolor:</span><input type="text" class="cssxiugai ui-corner-all ui-widget-content" id="cssfontcolor" disabled="disabled"/>
+	<input type="button" value="更改" onclick="shezhicss()" id="genggaicss"/>
+    </div>
+    <div id="teshucaozuo">
+    <span>如果要使用相邻临元素间的左边距和上边距离设置，请先进行对齐操作（如：设置左边距，则应该使元素与它左边的那个元素的上对齐或下对齐。除了button和text其它的临距都是指的div之间的临距）</span><br/>
+    <span class="cssspan">margin-left:</span><input type="text" class="teshucaozuolan ui-corner-all ui-widget-content" id="cssmarginleft"/>
+    <input type="button" value="更改左临边" onclick="shezhilinbianleft()" id="genggailinbianleft"/>
+    <span class="cssspan">margin-top:</span><input type="text" class="teshucaozuolan ui-corner-all ui-widget-content" id="cssmargintop"/>
+    <input type="button" value="更改上临边" onclick="shezhilinbiantop()" id="genggailinbiantop"/>
+    </div>
+</div>
+<!--
+<input type="button" value="show" onclick="showposition()"/>
+<span id="all"></span>
+-->
+<div id="renameform" title="表单ID重命名">
+    <form>
+	<fieldset>
+	<label for="biaodanid">表单ID：</label>
+	<input type="text" name="biaodanid" id="biaodanid" class="text ui-widget-content ui-corner-all" />
+	</fieldset>
+	</form>
+</div>
+<div id="resizeform" title="更改表单容器大小">
+    <form>
+	<fieldset>
+	<label for="biaodanwidth">表单宽度：</label>
+	<input type="text" name="biaodanwidth" id="biaodanwidth" class="text ui-widget-content ui-corner-all biaodankuangao" />
+    <br/>
+    <label for="biaodanheight">表单高度：</label>
+	<input type="text" name="biaodanheight" id="biaodanheight" class="text ui-widget-content ui-corner-all biaodankuangao" />
+	</fieldset>
+	</form>
+</div>
+<div id="getnewtable" title="插入表格">
+    <form>
+	<fieldset>
+	<label for="biaogehangshu">表格行数：</label>
+	<input type="text" name="biaogehangshu" id="biaogehangshu" class="text ui-widget-content ui-corner-all biaodankuangao" />
+    <br/>
+    <label for="biaogelieshu">表格列数：</label>
+	<input type="text" name="biaogelieshu" id="biaogelieshu" class="text ui-widget-content ui-corner-all biaodankuangao" />
+	</fieldset>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+        .btnGroup {
+            width: 100%;
+            bottom: 30px;
+            text-align: center;
+            position: fixed;
+        }
+    </style>
+</head>
+<body class="container">
+    <div class="btnGroup">
+        <button class="btnPlay">Play</button>
+        <button class="btnStop">Stop</button>
+        <button class="btnPause">Pause</button>
+    </div>
+</body>
+</html>
+<script src="./js/canvas-keyframes.js"></script>
+<script>
+    !function () {
+        var urls = ['7A22570B02FB.jpg', '7A2267F5A613.jpg', '7A2287107DC4.jpg', '7A2297C67488.jpg', '7A22A7B119AF.jpg'
+            , '7A22B7E04B3A.jpg'];
+        var imgArr = [];
+        for (var i in urls) {
+            var img = new Image();
+            img.src = './imgs/1/' + urls[i];
+            imgArr.push(img);
+        }
+        var w = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+
+        var h = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+
+        var keyFrames = new CanvasKeyFrames(document.querySelector('.container'), 'array', imgArr, {
+            fps: 9,
+            width: w,
+            height: h
+        });
+
+        // 封面加载完成时显示
+        imgArr[0].onload = () => {
+            keyFrames.stop();
+        };
+
+        document.querySelector('.btnPlay').addEventListener('click', _ => {
+            console.log(_);
+            keyFrames.play();
+        });
+        document.querySelector('.btnStop').addEventListener('click', _ => {
+            console.log(_);
+            keyFrames.stop();
+        });
+        document.querySelector('.btnPause').addEventListener('click', _ => {
+            console.log(_);
+            keyFrames.pause();
+        });
+    }();
+</script>

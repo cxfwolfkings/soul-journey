@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <button name="btnTest">测试按钮</button>
+</body>
+</html>
+<script type="text/javascript" src="js/Colin.js"></script>
+<script type="text/javascript">
+    var world = new Colin.World({});
+
+    function fixDate(date) {
+        var base = new Date(0)
+        var skew = base.getTime()
+        if (skew > 0)
+            date.setTime(date.getTime() - skew)
+    }
+
+    var now = new Date()
+    fixDate(now)
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000)
+    var visits = world.getCookie("counter")
+    if (!visits)
+        visits = 1
+    else
+        visits = parseInt(visits) + 1
+    world.setCookie("counter", visits, now)
+    document.write("朋友您已来这儿" + visits + "次.<br/>");
+    world.getClientInfo();
+    world.keepIt("btnTest");
+</script>

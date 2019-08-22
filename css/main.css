@@ -1,0 +1,84 @@
+body{
+	float:left;}
+#shejiqibiaoti{
+	text-align:center;
+	height:30px;
+	padding-top:10px;
+	margin-top:0px;
+	border-top:none;
+	border-right:none;
+	border-left:none;}
+#shejiqi{
+	width:600px;
+	height:400px;
+	position:absolute;
+	top:56px;
+	left:333px;}
+#screen{
+	width:600px;
+	height:360px;
+	float:left;
+	top:40px;
+	left:0px;
+	position:absolute;
+	}
+#toolbar{
+float:left;
+top:56px;
+left:86px;
+cursor:default;
+font-size:18px;
+width:200px;
+position:absolute;
+}
+.moveyuansu{
+	position:absolute;
+	}
+.fuzhu{
+width:156px;
+
+}
+.fuzhu:hover{
+cursor:move;}
+.ui-resizable-helper { border: 2px dotted #00F; }
+.liebiao{
+	width:197px;
+	height:30px;
+	list-style:none;
+	text-align:center;
+	font-size:18px;
+	padding-top:9px;
+	}
+#htmltools{
+	margin:-20px -81px;
+	width:197px;
+	min-height:100px;
+	}
+#tabs{
+	position:absolute;
+	left:983px;
+	top:56px;
+	width:300px;
+	}
+#cssandshuxing{
+left:326px;
+top:486px;}
+.shuxingspan{}
+.shuxing{
+width:80px;}
+#cssandshuxing{
+width:900px;}
+.cssxiugai{
+width:80px;}
+.teshucaozuolan{
+	width:165px;
+	}
+.biaodankuangao{
+	width:165px;
+	}
+.newtable{
+	width:100px;
+	height:100px;
+	border:1px solid #000;}
+.newtd{
+	border:1px solid #000;}

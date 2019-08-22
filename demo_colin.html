@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript" src="js/Colin.js"></script>
+<script type="text/javascript">
+    // The following code demonstrates the addPrivateProperty() method.
+    var o = {};  // Here is an empty object
+
+    // Add property accessor methods getName and setName()
+    // Ensure that only string values are allowed
+    addPrivateProperty(o, "Name", function (x) { return typeof x == "string"; });
+
+    o.setName("Frank");       // Set the property value
+    console.log(o.getName()); // Get the property value
+    o.setName(0);             // Try to set a value of the wrong type
+</script>
