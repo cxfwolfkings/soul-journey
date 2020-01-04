@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>易度甘特图</title>
+    <!--edo css-->
+    <link href="../JS_Library/EdoGantt/scripts/edo/res/css/edo-all.css" rel="stylesheet" type="text/css" />
+    <link href="../JS_Library/EdoGantt/scripts/edo/res/product/project/css/project.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    	<!-- 子div居中 -->
+    	#view{
+    		text-align:center;
+    	}
+    	#view div{
+    		margin:0 auto;
+    	}
+    </style>
+    <!--edo js-->
+    <script src="../JS_Library/EdoGantt/scripts/edo/edo.js" type="text/javascript"></script>
+    <script src="../JS_Library/EdoGantt/data/ganttdata.js" type="text/javascript"></script>
+    <!--<script src="../JS_Library/EdoGantt/scripts/thirdlib/excanvas/excanvas.js" type="text/javascript"></script>-->
+    <script src="../JS_Library/EdoGantt/examples/js/EdoGantt.js" type="text/javascript"></script>
+    <script src="../JS_Library/EdoGantt/examples/js/GanttMenu.js" type="text/javascript"></script>
+    <script src="../JS_Library/EdoGantt/examples/js/GanttSchedule.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="view">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var edogantt = new EdoGantt();
+    edogantt.set({
+        type: 'edogantt',
+        width: 1200,
+        height: 600,
+        render: document.getElementById('view')
+    });
+    var dataGantt = new Edo.data.DataGantt(ganttData);
+    edogantt.set('data', dataGantt);       
+</script>
+

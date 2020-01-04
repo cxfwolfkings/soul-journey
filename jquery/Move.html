@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>×ßÂíµÆ</title>
+    <script type="text/javascript">
+
+   var direction ='left';
+   var intervalId = window.setInterval(function () {
+       if (direction == 'right') {
+           var title = document.title;
+           var firstchar = title.charAt(0);
+           var lastchar = title.substring(1, title.length);
+           document.title = lastchar + firstchar;
+       }
+       if (direction == 'left') {
+           var title = document.title;
+           var firstchar = title.charAt(title.length - 1);
+           var lastchar = title.substring(0, title.length - 1);
+           document.title = firstchar + lastchar;
+       }
+   }, 2000)
+    </script>
+</head>
+<body>
+</body>
+</html>

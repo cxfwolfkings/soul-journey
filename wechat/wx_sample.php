@@ -1,7 +1,7 @@
 <?php
 /**
-  * wechat php test
-  */
+ * wechat php test
+ */
   
 //define your token
 define("TOKEN", "CharlesAndStar");
@@ -30,6 +30,7 @@ class WechatCallbackapiTest {
 		$this->write_log("响应消息");
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        $this->write_log($postStr);
 
 		//extract post data
 		if (!empty ($postStr)) {
@@ -39,7 +40,15 @@ class WechatCallbackapiTest {
 			$keyword = trim($postObj->Content);
 			$type = trim($postObj->Event);
 			$time = time();
-			$textTpl = "";
+			$this->write_log("发信人：" . $fromUsername . "，收信人：" 
+			    . $toUsername . "，" . "内容：" . $keyword . "，" . $type);
+			
+			$filename = "./Template2.xml";
+            $handle = fopen($filename, "r");//读取二进制文件时，需要将第二个参数设置成'rb'
+            //通过filesize获得文件大小，将整个文件一下子读到一个字符串中
+            $textTpl = fread($handle, filesize ($filename));
+            fclose($handle);
+			
 			$msgType = "text";
             $contentStr = "";
 			if ($type == "subscribe") {
@@ -78,7 +87,9 @@ class WechatCallbackapiTest {
 				$this->write_log("没有关键字");
 				$contentStr = "Welcome to Charles' world（欢迎来到星辰之间...）";
 			}
+			$this->write_log("拼接结果字符串！");
 		    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+		    $this->write_log($resultStr);
 	        echo $resultStr;
 		} else {
 			echo "Welcome to Charles' world（欢迎来到星辰之间...）";

@@ -1,0 +1,53 @@
+﻿<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="JS/jquery.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					//HighCharts中chart属性配置          
+					chart : {
+						renderTo : 'container',//div 标签            
+						type : 'line',//图表类型                                 
+						/******************以下chart配置可选******************/
+						backgroundColor : "#EAF7FF",//图表背景色            
+						borderWidth : 5,//图表边框宽度            
+						borderRadius : 15,//图表边框圆角角度            
+						plotBackgroundColor : "#6DBFBB",//主图表区背景颜色            
+						plotBorderColor : 'red',//主图表边框颜色            
+						plotBorderWidth : 2,//主图表边框宽度            
+						shadow : true,//是否设置阴影            
+						zoomType : 'xy'//拖动鼠标放大图表的方向          
+					},
+					credits : {
+						href : 'http://www.52wulian.org',
+						position : {
+							x : -30,
+							y : -30
+						},
+						style : {
+							color : 'red',
+							fontWeight : 'bold'
+						},
+						text : '我爱物联网'
+					},
+					xAxis : {
+						categories : [ '1', '2', '3', '4', '5' ]
+					},
+					series : [ {
+						name : 'series1',
+						data : [ 2, 4, 5, 9, 2 ]
+					} ]
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<script src="JS/highcharts.js"></script>
+	<script src="JS/exporting.js"></script>
+	<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>

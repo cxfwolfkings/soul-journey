@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>星辰之间</title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.3.2.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.css" />
+</head>
+
+<body>
+  <div data-role="page" id="page">
+    <div data-role="header" data-position="fixed">
+      <h1>星辰之间</h1>
+    </div>
+    <div data-role="content">
+      <div>
+        <img src="images/1.gif" style="width:100%" />
+      </div>
+      <div class="ui-grid-b">
+        <div class="ui-block-a">
+          <a href="#" data-role="button" data-theme="a" data-icon="home" data-iconpos="top">首页</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" data-theme="a" data-icon="grid" data-iconpos="top">列表</a>
+        </div>
+        <div class="ui-block-c">
+          <a href="#" data-role="button" data-theme="a" data-icon="star" data-iconpos="top">加星</a>
+        </div>
+        <div class="ui-block-a">
+          <a href="#" data-role="button" data-theme="a" data-icon="info" data-iconpos="top">信息</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" data-theme="a" data-icon="search" data-iconpos="top">查找</a>
+        </div>
+        <div class="ui-block-c">
+          <a href="#" data-role="button" data-theme="a" data-icon="gear" data-iconpos="top">设置</a>
+        </div>
+        <div class="ui-block-a">
+          <a href="#" data-role="button" data-theme="a" data-icon="check" data-iconpos="top">已选</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" data-theme="a" data-icon="alert" data-iconpos="top">提示</a>
+        </div>
+        <div class="ui-block-c">
+          <a href="#" data-role="button" data-theme="a" data-icon="plus" data-iconpos="top">添加</a>
+        </div> 
+      </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+      <div data-role="navbar" data-grid="b">
+        <ul>
+          <li><a href="index.html" class="ui-btn-active" data-ajax="false">神殿</a></li>
+          <li><a href="index2.html" data-ajax="false">圣域</a></li>
+          <li><a href="index3.html" data-ajax="false">仙宫</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  var selectAry = [
+    ["chitose"],
+    ["Epsilon2.1", "Epsilon2_1"],
+    ["Gantzert_Felixander", "gf"],
+    ["haru01"],
+    ["haru02"],
+    ["haruto"],
+    ["hibiki"],
+    ["hijiki"],
+    ["izumi"],
+    ["koharu"],
+    ["miku"],
+    ["nico"],
+    ["ni-j"],
+    ["nipsilon"],
+    ["nito"],
+    ["shizuku"],
+    ["tororo"],
+    ["tsumiki"],
+    ["Unitychan"],
+    ["wanko"],
+    ["z16"]
+  ];
+
+  function initL2Dwidget(selectId) {
+    let modalName = selectAry.find((item) => {
+      return item[0].toLowerCase() == selectId
+    });
+    console.log('modalName', modalName)
+    modalName = modalName && modalName[1] ? modalName[1] : selectId
+
+    L2Dwidget
+      .on('*', (name) => {
+        console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
+      })
+      .init({
+        dialog: {
+          // 开启对话框
+          enable: true,
+          script: {
+            // 当触摸到角色身体
+            'tap body': '哎呀！别碰我！',
+            // 当触摸到角色头部
+            'tap face': '人家是在认真写博客哦--前端妹子',
+          }
+        },
+        display: {
+          position: 'right'
+        },
+        "model": {
+          "jsonPath": "packages/live2d-widget-model-" + modalName + "/assets/" + selectId + ".model.json"
+        },
+        "mobile": {
+          "show": true,
+          scale: 0.5
+        },
+      });
+  }
+  let tId = selectAry[0];
+  initL2Dwidget(tId);
+</script> 
+
+</html>
