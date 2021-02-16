@@ -1,0 +1,219 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GB2312"/>
+		<title>开源曲线统计图</title>
+		
+		
+		<!-- 1. Add these JavaScript inclusions in the head of your page -->
+		<script type="text/javascript" src="jsLineGraph/jquery.min.js"></script>
+		<script type="text/javascript" src="jsLineGraph/highcharts.js"></script>
+		
+		<!-- 1a) Optional: add a theme file -->
+		<!--
+			<script type="text/javascript" src="../js/themes/gray.js"></script>
+		-->
+		
+		<!-- 1b) Optional: the exporting module -->
+		<script type="text/javascript" src="jsLineGraph/exporting.js"></script>
+		
+		
+		<!-- 2. Add the JavaScript to initialize the chart on document ready 666666-->
+		<script type="text/javascript">
+		
+			var chart;
+			$(document).ready(function() {
+			Highcharts.theme = {
+   colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+   chart: {
+      backgroundColor: {
+         linearGradient: [0, 0, 500, 500],
+         stops: [
+            [0, 'rgb(255, 255, 255)'],
+            [1, 'rgb(240, 240, 255)']
+         ]
+      }
+,
+      borderWidth: 2,
+      plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+      plotShadow: true,
+      plotBorderWidth: 1
+   },
+   title: {
+      style: { 
+         color: '#000',
+         font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+      }
+   },
+   subtitle: {
+      style: { 
+         color: '#666666',
+         font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+      }
+   },
+   xAxis: {
+      gridLineWidth: 1,
+      lineColor: '#000',
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px Trebuchet MS, Verdana, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+
+         }            
+      }
+   },
+   yAxis: {
+      minorTickInterval: 'auto',
+      lineColor: '#000',
+      lineWidth: 1,
+      tickWidth: 1,
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px Trebuchet MS, Verdana, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+         }            
+      }
+   },
+   legend: {
+      itemStyle: {         
+         font: '9pt Trebuchet MS, Verdana, sans-serif',
+         color: 'green'
+
+      },
+      itemHoverStyle: {
+         color: '#039'
+      },
+      itemHiddenStyle: {
+         color: 'gray'
+      }
+   },
+   labels: {
+      style: {
+         color: '#99b'
+      }
+   }
+};
+
+// Apply the theme
+	var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'spline'
+					},
+					title: {
+					    text: '模拟感染曲线统计图'
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+						categories: ['9:05', '9:10', '9:15', '9:20', '9:30', '9:35', 
+							'9:40', '9:45', '9:50', '9:55', '10:00', '10:05']
+					},
+					yAxis: {
+						title: {
+							text: '感染人数(个)'
+						},
+						 plotLines: [{
+                                 value: 0,
+                                 width: 10,
+                                 color: '#808080'
+                                }],
+						labels: {
+							formatter: function() {
+								return this.value +''
+							}
+						}
+					},
+					tooltip: {
+						crosshairs: true,
+						shared: true
+					},
+					plotOptions: {
+						spline: {
+							marker: {
+								radius: 1,
+								lineColor: '#FFFF00',
+								lineWidth: 1
+							}
+						}
+					},
+					series: [{
+						name: '单位(人/分钟)',
+						marker: {
+							symbol: 'square'
+						},
+						data: [5, 10, 9, 23, 50, 77, 33,22, 34, 88, 45, 17]
+				
+					}]
+				});
+				
+				
+			});
+			
+			//读取XML节点值
+			function readXml()
+			{
+			 //alert("abc");
+			 try
+			 {
+			 xmlDoc=new ActiveXObject("Microsoft.XMLDOM"); 
+			 }
+			 catch(e)
+			 {
+			  try
+			  {
+			   xmlDoc=document.implementation.createDocument("","",null); 
+			  }
+			  catch(e)
+			  {
+			   alert(e.message);
+			   return;  
+			  }
+			 }
+			 xmlDoc.async=false;
+			 xmlDoc.load("jsLineGraph/search_config.xml");
+			 
+			 document.getElementById("AAA").value=xmlDoc.getElementsByTagName("ServerLink")[0].childNodes[0].nodeValue;
+			 document.getElementById("BBB").value=xmlDoc.getElementsByTagName("UserID")[0].childNodes[0].nodeValue;
+			 document.getElementById("CCC").value=xmlDoc.getElementsByTagName("ShowInfoBefore")[0].childNodes[0].nodeValue;
+			 document.getElementById("DDD").value=xmlDoc.getElementsByTagName("ShowInfoAfter")[0].childNodes[0].nodeValue;
+			}
+		</script>
+		
+	</head>
+	<body style="text-align:center;">
+		
+		<!-- 3. Add the container -->
+		<div id="container" style="width: 720px; height: 410px;margin:0px auto"></div>	
+			<br/><br/>
+			<div> 
+			<input id="AAA" type="text" value="" style="width: 200px" />
+			<input id="BBB" type="text" value="" style="width: 200px" />
+			<input id="CCC" type="text" value="" style="width: 200px" />
+			<input id="DDD" type="text" value="" style="width: 200px" />
+			<button type="button" onclick="readXml()">确定</button>
+			</div>	
+			
+	</body>
+</html>

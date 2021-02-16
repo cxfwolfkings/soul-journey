@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Xml>
+	<ServerConfig>
+		<ServerLink>http://192.168.1.1</ServerLink>
+		<UserID>AAA</UserID>
+		<ShowInfoBefore>查看</ShowInfoBefore>
+		<ShowInfoAfter>的详细信息</ShowInfoAfter>
+	</ServerConfig>
+</Xml>

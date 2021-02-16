@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+    <script src="../JS/highcharts.js" type="text/javascript"></script>
+    <script src="../JS/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var options = {
+            chart: {
+                renderTo: 'container'
+            },
+            title: {
+                text: '销售计划执行分析',
+                align: 'left',
+                style: {
+                    color: 'black'
+                }
+            },
+            subtitle: {
+                text: '周计划',
+                align: 'left',
+                x: 25
+            },
+            xAxis: {
+                tickPixelInterval: 50,
+                labels: {
+                    style: {
+                        color: '#000'
+                    }
+                    // ,x: -12,
+                    //rotation: 25//调节倾斜角度偏移
+                },
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: '金额 (元)'
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value;
+                    }
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    pointWidth: 20,
+                    dataLabels: {
+                        enabled: true,
+                        // style: {
+                        // fontWeight: 'bold'
+                        //  },
+                        formatter: function() {
+                            return this.y;
+                        }
+                    }
+                }
+            },
+            legend: {
+                enabled: true,
+                x: -150
+            },
+            tooltip: {
+                crosshairs: [
+                {
+                    width: 1,
+                    color: '#50b432'
+                }, 
+                {
+                    width: 1,
+                    color: '#50b432'
+                }],
+                formatter: function() {
+                    var s;
+                    if (this.point.name) { // the pie chart                   
+                        s = '' + this.point.name + '<br/>' + tagName + '比例:<b>' + this.y.toFixed(2) + '%</b>';
+                    } else {
+                        s = '' + this.x + '<br/>' + this.point.series.name + ': ' + this.y + '元';
+                        // var s = this.x + '<br/>';
+                        // var indexP = this.point.x;
+                        // var series = this.series.chart.series;
+                        // for (var x = 0; x < 4; x++) {
+                        //     s += series[x].name + ':' + series[x].data[indexP].y + '<br/>';
+                        // }
+                    }
+                    return s;
+                }
+            },
+            series: []
+        }
+        var chart = new Highcharts.Chart(options);
+    });
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>

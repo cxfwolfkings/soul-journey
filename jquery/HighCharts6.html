@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+
+    <script src="JS/jquery.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="JS/highcharts.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Highcharts.theme = {
+                colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+                chart: {
+                    backgroundColor: {
+                        linearGradient: [0, 0, 500, 500],
+                        stops: [
+                            [0, 'rgb(255, 255, 255)'],
+                            [1, 'rgb(240, 240, 255)']
+                        ]
+                    },
+                    borderWidth: 2,
+                    plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+                    plotShadow: true,
+                    plotBorderWidth: 1
+                },
+                title: {
+                    style: { 
+                        color: '#000',
+                        font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+                    }
+                },
+                subtitle: {
+                    style: { 
+                        color: '#666666',
+                        font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+                    }
+                },
+                xAxis: {
+                    gridLineWidth: 1,
+                    lineColor: '#000',
+                    tickColor: '#000',
+                    labels: {
+                        style: {
+                            color: '#000',
+                            font: '11px Trebuchet MS, Verdana, sans-serif'
+                        }
+                    },
+                    title: {
+                        style: {
+                            color: '#333',
+                            fontWeight: 'bold',
+                            fontSize: '12px',
+                            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                        }            
+                    }
+                },
+                yAxis: {
+                    minorTickInterval: 'auto',
+                    lineColor: '#000',
+                    lineWidth: 1,
+                    tickWidth: 1,
+                    tickColor: '#000',
+                    labels: {
+                        style: {
+                            color: '#000',
+                            font: '11px Trebuchet MS, Verdana, sans-serif'
+                        }
+                    },
+                    title: {
+                        style: {
+                            color: '#333',
+                            fontWeight: 'bold',
+                            fontSize: '12px',
+                            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                        }            
+                    }
+                },
+                legend: {
+                    itemStyle: {         
+                        font: '9pt Trebuchet MS, Verdana, sans-serif',
+                        color: 'green'
+                    },
+                    itemHoverStyle: {
+                        color: '#039'
+                    },
+                    itemHiddenStyle: {
+                        color: 'gray'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#99b'
+                    }
+                }
+            };
+
+            // Apply the theme
+	        var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+        
+            var states = '0,项目立项,判断需求,启动项目,用户演示,用户方案,商户谈判,签订合同'.split(',');
+            var dates = '0,2015/2/8,2015/2/9,2015/2/10,2015/2/11,2015/2/12,2015/2/13,2015/2/14'.split(',');
+            var state_json = $.parseJSON('[{"name":"1-项目立项","time":"2-2015/2/9"},{"name":"2-判断需求","time":"2-2015/2/9"}]');
+            var options = {          
+                //HighCharts中chart属性配置          
+                chart: {        
+                    renderTo: 'container',//div 标签            
+                    type: 'line'//图表类型                                 
+                    /******************以下chart配置可选******************/            
+                    //backgroundColor:"#EAF7FF",//图表背景色            
+                    //borderWidth:5,//图表边框宽度            
+                    //borderRadius:15,//图表边框圆角角度            
+                    //plotBackgroundColor:"#6DBFBB",//主图表区背景颜色            
+                    //plotBorderColor:'red',//主图表边框颜色            
+                    //plotBorderWidth:2,//主图表边框宽度            
+                    //shadow:true,//是否设置阴影            
+                    //zoomType:'xy'//拖动鼠标放大图表的方向          
+                },   
+                title:{
+                    text:'项目进度时间表',
+                    style:{fontWeight:'bold'}
+                },       
+                credits : {           
+                    enabled:false     
+                },           
+                xAxis: { 
+                    title:{text:'完成时间'},
+                    categories: [],
+                    min:1,
+                    max:7,
+                    gridLineWidth:0,
+                    labels:{
+                        formatter:null
+                    }
+                }, 
+                yAxis: { 
+                    title:{text:'项目阶段'},
+                    categories: [],
+                    min:0,
+                    max:8,
+                    gridLineWidth:0,
+                    labels:{
+                        formatter:null
+                    }
+                },   
+                tooltip:{
+                    enabled:false
+                },
+                plotOptions:{
+                    series:{
+                        dataLabels:{
+                            enabled: true,
+                            formatter:function(){
+                                return states[this.y]+":"+dates[this.x];
+                            }
+                        }
+                    },
+                    spline: {
+				        marker: {
+						    radius: 1,
+							lineColor: '#FFFF00',
+							lineWidth: 1
+						}
+					}
+                },               
+                series: [
+                    {data:[]}
+                ]        
+            };   
+            options.xAxis.labels.formatter = function(){
+                return dates[this.value];
+            }
+            options.xAxis.categories.push(dates);
+            options.yAxis.labels.formatter = function(){
+                return states[this.value];
+            }
+            options.yAxis.categories.push(states);
+            $.each(state_json, function(key, value) {;
+                options.series[0].data.push([parseInt(value["time"].split('-')[0]),parseInt(value["name"].split('-')[0])]);
+            });
+            //options.series[0].data.push([2,1]);
+            //options.series[0].data.push([2,2]);
+            var chart = new Highcharts.Chart(options);
+        });
+    </script>
+
+</head>
+<body>
+    <div id="container">
+    </div>
+</body>
+</html>
